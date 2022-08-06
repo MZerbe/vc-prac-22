@@ -1,6 +1,6 @@
 # 01_1 - StyleGAN
 StyleGAN is an evolution of a traditional GAN (ProGAN). In order to understand which problems StyleGAN tries to solve 
-and how this is done and how this is done, it is necessary to understand how traditional GANs are structured.
+and how this is done, it is necessary to understand how traditional GANs are structured.
 
 
 ## Traditionelle GANs
@@ -136,8 +136,3 @@ Lastly, you need a pretrained network to produce of picture of a specific stylin
 - https://medium.com/@steinsfu/stylegan-vs-stylegan2-vs-stylegan2-ada-vs-stylegan3-c5e201329c8a
 - https://jonathan-hui.medium.com/gan-stylegan-stylegan2-479bdf256299
 - https://en.wikipedia.org/wiki/StyleGAN
-
-- Soldat:
-    - berechne militär soldaten. suche latenten faktor, maskulinität und hair wachstum. soldaten dürfen keine haare haben.
-    - versuche soldate mit langen haaren zu erzeugen => schlägt fehl, da es keine trainings data gibt
-    - problem: normal distribution is used for sampling => latent factors sind wesentlich komplexer als sie sein müssen "unavoidable entanglement
