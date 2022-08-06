@@ -14,3 +14,14 @@ See [here.](02_installation.md)
 # 03 - Usage
 See [here.](03_usage.md)
 
+# 04 - Linearcombination
+See [here.](04_linearcombination.md)
+
+# 05 - Styleblocks
+See [here.](05_styleblocks.md)
+
+# 06 - Projection
+See [here.](06_projection.md)
+
+# 07 - Encoding
+See [here.](07_encoding.md)
