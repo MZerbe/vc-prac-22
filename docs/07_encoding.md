@@ -2,27 +2,37 @@
 How to transfer Images to latent.
 
 ## Task
-Foo
-
-## Research
-### Latent Space Embedding
-#### Learn Encoder
-- map a given image to the latent space e.g. Variational Auto-Encoder#
-- fast solution of image, has problems generalizing beyond the training dataset
-
-#### Random initial latent
-- select random latent code and optimize it using gradient descent
-- general and stable version of encoding
-- Perceptual Loss and Style Transer:
-  - TODO
-  -
+The task was to interpreter a given image into a latent vector.
+On top on that we should research if it is better to optimize on z or ws.
+Finally, we should encode images of ourselves and morph these together with a slider.
 
 ## Implementation
-Bar
+### Search best seed
+A
 
+### Search best loss weights
+A
+
+### Loss Function
+A
+
+### Encoding
+#### Optimizer and Scheduler
+ExponentialLR & Onecycle (show plot results maybe)
 
 ## Results
-Baz
+### Z vs WS
+WS gute/sehr gute? Resultate bei höheren Step und Epochen - Count. TODO: Wie ist das bei eigenen Bildern?
+Z gute Resultate bei niedrigen Steps und Epochen. Kaum verbesserung nach geringer Anzahl von Iterationen.
+TODO: Insert Vergleiche WS bei wenigen Iteration und Z bei wenigen Iterationen. Auf Englisch übersetzen!
+TODO: Show progress epoch of woman of WS vs Woman of Z?
+
+### Plots
+
+### Images
+
+### Slider
+
 
 ## Sourcecode
 ```python
@@ -32,9 +42,5 @@ BarBaz
 # Source
 - How to Embed Images Into the StyleGAN Latent Space  
   https://openaccess.thecvf.com/content_ICCV_2019/papers/Abdal_Image2StyleGAN_How_to_Embed_Images_Into_the_StyleGAN_Latent_Space_ICCV_2019_paper.pdf
-- Pytorch Stylegan Encoder (200Stars)
-  https://github.com/jacobhallberg/pytorch_stylegan_encoder
-- Puzer Stylegan Encoder (1000 Stars)
-  https://github.com/Puzer/stylegan-encoder
-- StyleGAN3 Port of Puzer Encoder (700 Stars)
-  https://github.com/pbaylies/stylegan-encoder
+- VGG Perceptual Loss Implementation
+  https://gist.github.com/alex-vasilchenko-md/dc5155f96f73fc4f67afffcb74f635e0
