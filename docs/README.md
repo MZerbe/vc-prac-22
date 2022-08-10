@@ -21,6 +21,7 @@ See [here.](04_linearcombination.md)
 See [here.](05_styleblocks.md)
 
 # 06 - Projection
+NOT DONE!
 See [here.](06_projection.md)
 
 # 07 - Encoding
