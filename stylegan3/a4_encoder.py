@@ -33,6 +33,16 @@ class Encoder:
         ]
         self.device = torch.device('cuda')
         self.network = self.load_network(self.listOfNetworks[network])
+        self.mean = torch.tensor([0.0216, -0.1726, -0.2571])
+        self.std_dev = torch.tensor([0.5703, 0.5211, 0.5236])
+        self.inverse_norm = torchvision.transforms.Compose([torchvision.transforms.Normalize(mean=[0., 0., 0.],
+                                                                                             std=[1 / self.std_dev[0],
+                                                                                                  1 / self.std_dev[1],
+                                                                                                  1 / self.std_dev[2]]),
+                                                            torchvision.transforms.Normalize(
+                                                                mean=[-self.mean[0], -self.mean[1], -self.mean[2]],
+                                                                std=[1., 1., 1.])
+                                                            ])
         self.label = self.generate_label()
         self.indir = './_screenshots'
         self.latent = None
@@ -126,6 +136,10 @@ class Encoder:
         transform = torchvision.transforms.Compose([torchvision.transforms.PILToTensor()])
         img_tensor = transform(pil_image).unsqueeze_(0).to(self.device)
         img_tensor = img_tensor / 128 - 1
+
+        if normalize:
+            norm_transform = torchvision.transforms.Normalize(self.mean, self.std_dev, inplace=True)
+            norm_transform.forward(img_tensor)
 
         self.target_image = img_tensor
 
