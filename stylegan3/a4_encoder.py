@@ -64,6 +64,7 @@ class Encoder:
     def generate_random_latent(self, seed):
         """
         Generate a random latent based on a seed.
+        :param use_ws: Whether the latent should be in ws dimension.
         :param seed: An integer which serves as a seed for the random latent.
         :return: torch.Tensor
         """
@@ -155,7 +156,7 @@ class Encoder:
         has the following syntax: %H%M%S_.
         """
 
-        if not normalized:
+        if normalized:
             tensor = self.inverse_norm(tensor)
 
         img = (tensor.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
@@ -224,6 +225,9 @@ class Encoder:
         best_vgg = 0
         best_mse = 0
 
+        if use_ws:
+            random_latent = self.network.mapping(z=random_latent, c=None)
+
         for vgg_weight in vgg_weights:
             for mse_weight in mse_weights:
                 # break out if both are zero
@@ -284,9 +288,9 @@ class Encoder:
         """
         # generate initial image based on ws or z
         if use_ws:
-            ws = self.network.mapping(z=latent, c=None)
-            img = self.network.synthesis(ws=ws, noise_mode='const')
-            optimize_on = ws
+            # ws = self.network.mapping(z=latent, c=None)
+            img = self.network.synthesis(ws=latent, noise_mode='const')
+            optimize_on = latent
         else:
             img = self.network(latent, self.label)
             optimize_on = latent
@@ -412,31 +416,30 @@ if __name__ == "__main__":
     # encode image 1. image path is ./_screenshots
     encoder = Encoder(2)
     # encoder.calculate_mean_std()
-    img1, latent1 = encoder.encode_single_image("johannes_nah.jpg", use_ws=True, epoch_cnt=10, steps_cnt=50,
-                                                optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
-                                                normalize=True)
-    encoder.save_tensor(latent1, "johannes_nah.jpg")
+    #img1, latent1 = encoder.encode_single_image("johannes_nah.jpg", use_ws=True, epoch_cnt=10, steps_cnt=50,
+    #                                            optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
+    #                                            normalize=True)
+    #encoder.save_tensor(latent1, "johannes_nah.jpg")
     # loaded_tensor = encoder.load_tensor("normal_white_man.png")
     # print(loaded_tensor, loaded_tensor.shape)
 
     # encode image 2. image path is ./_screenshots
-    #img2, latent2 = encoder.encode_single_image("dorothee_smile_hell.jpg", use_ws=True, epoch_cnt=11, steps_cnt=50,
+    # img2, latent2 = encoder.encode_single_image("dorothee_smile_hell.jpg", use_ws=True, epoch_cnt=11, steps_cnt=50,
     #                                            optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
     #                                            normalize=False)
-    #encoder.save_tensor(latent2, "dorothee_normal.jpg")
-
+    # encoder.save_tensor(latent2, "dorothee_normal.jpg")
 
     # encode image 2. image path is ./_screenshots
-    img3, latent3 = encoder.encode_single_image("maxi_smile.jpg", use_ws=True, epoch_cnt=10, steps_cnt=50,
+    img3, latent3 = encoder.encode_single_image("maxi_smile.jpg", use_ws=True, epoch_cnt=15, steps_cnt=80,
                                                 optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
                                                 normalize=True)
     encoder.save_tensor(latent3, "maxi_smile.jpg")
 
-    #tensor1 = encoder.load_tensor("johannes_nah.jpg")
-    #tensor2 = encoder.load_tensor("maxi_smile.jpg")
+    # tensor1 = encoder.load_tensor("johannes_nah.jpg")
+    # tensor2 = encoder.load_tensor("maxi_smile.jpg")
 
     # morph both pictures with linearcombination and show the result with a slider
-    #linearcombination = a1_linearcombination.Linearcombination(network_counter=2, generate_latents=False,
+    # linearcombination = a1_linearcombination.Linearcombination(network_counter=2, generate_latents=False,
     #                                                           latent1=tensor1, latent2=tensor2, slider_size=10,
     #                                                           use_ws=True)
-    #linearcombination.create_slider()
+    # linearcombination.create_slider()
