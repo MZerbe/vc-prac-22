@@ -1,4 +1,6 @@
 # 03 - Usage
+(From StyleGAN3 readme: )
+
 To use stylegan3 within an interactive UI you can run: ```python visualizer.py```  
 To use stylegan3 within an CLI you can run:
 ```

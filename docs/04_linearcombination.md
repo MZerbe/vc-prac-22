@@ -1,6 +1,6 @@
 # 04 - Linearcombination
 ## Task
-The task was to morph two images together using a simple linear combination.
+The task was to morph two images together using a simple linear combination. The relevant code is [here](../stylegan3/a1_linearcombination.py).
 
 ## Implementation
 - For the implementation we used a pre-trained GAN from NVidia.
@@ -12,7 +12,7 @@ def generate_latent(self, seed):
     return torch.from_numpy(np.random.RandomState(seed).randn(1, self.network.z_dim)).to(self.device)
 ```
 
-- To morph the images, we used a simple linear combination with an associated weight.
+- To morph the images, we used a simple linear combination with an associated weight (between 0 and 1).
 ```python
 # generate linearcombination of two latents based on a given weight
 @staticmethod
@@ -20,15 +20,13 @@ def calculate_linearcombination(weight, latent1, latent2):
     return (weight * latent1) + ((1 - weight) * latent2)
 ```
 
+
 ## Results
-Latent1  
-![latent1](./results/1_assignment/latent1.png)
+Interpolation over latent representation
 
-Latent2  
-![latent2](./results/1_assignment/latent2.png)
-
-Morphed  
-![morphed](./results/1_assignment/morphed.png)
+| Latent1                                        | Morphed                                         | Latent2                                        |                                    
+|------------------------------------------------|-------------------------------------------------|------------------------------------------------|
+| ![latent1](./results/1_assignment/latent1.png) | ![morphed](./results/1_assignment/morphed.png)  | ![latent2](./results/1_assignment/latent2.png) |
 
 ## Slider
 Furthermore, we used the Python library Plotly to morph the images using a slider.

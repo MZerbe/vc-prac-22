@@ -13,7 +13,7 @@ class Styleblocks:
         self.fig = go.Figure()
         self.listOfNetworks = [
             'https://api.ngc.nvidia.com/v2/models/nvidia/research/stylegan3/versions/1/files/stylegan3-r-afhqv2-512x512.pkl',      # dogs/cats
-            'https://api.ngc.nvidia.com/v2/models/nvidia/research/stylegan3/versions/1/files/stylegan3-t-metfacesu-1024x1024.pkl'  # TODO
+            'https://api.ngc.nvidia.com/v2/models/nvidia/research/stylegan3/versions/1/files/stylegan3-t-metfacesu-1024x1024.pkl'
         ]
         self.device = torch.device('cuda')
         self.network = self.load_network(self.listOfNetworks[network_counter])

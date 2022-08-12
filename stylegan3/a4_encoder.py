@@ -416,30 +416,30 @@ if __name__ == "__main__":
     # encode image 1. image path is ./_screenshots
     encoder = Encoder(2)
     # encoder.calculate_mean_std()
-    #img1, latent1 = encoder.encode_single_image("johannes_nah.jpg", use_ws=True, epoch_cnt=10, steps_cnt=50,
+    #img1, latent1 = encoder.encode_single_image("normal_white_man.png", use_ws=False, epoch_cnt=5, steps_cnt=30,
     #                                            optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
-    #                                            normalize=True)
-    #encoder.save_tensor(latent1, "johannes_nah.jpg")
+    #                                            normalize=False)
+    # encoder.save_tensor(latent1, "johannes_nah.jpg")
     # loaded_tensor = encoder.load_tensor("normal_white_man.png")
     # print(loaded_tensor, loaded_tensor.shape)
 
     # encode image 2. image path is ./_screenshots
-    # img2, latent2 = encoder.encode_single_image("dorothee_smile_hell.jpg", use_ws=True, epoch_cnt=11, steps_cnt=50,
-    #                                            optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
-    #                                            normalize=False)
-    # encoder.save_tensor(latent2, "dorothee_normal.jpg")
-
-    # encode image 2. image path is ./_screenshots
-    img3, latent3 = encoder.encode_single_image("maxi_smile.jpg", use_ws=True, epoch_cnt=15, steps_cnt=80,
+    img2, latent2 = encoder.encode_single_image("dorothee_smile.jpg", use_ws=True, epoch_cnt=10, steps_cnt=50,
                                                 optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
                                                 normalize=True)
-    encoder.save_tensor(latent3, "maxi_smile.jpg")
+    encoder.save_tensor(latent2, "dorothee_smile.jpg")
 
-    # tensor1 = encoder.load_tensor("johannes_nah.jpg")
-    # tensor2 = encoder.load_tensor("maxi_smile.jpg")
+    # encode image 2. image path is ./_screenshots
+    #img3, latent3 = encoder.encode_single_image("maxi_smile.jpg", use_ws=True, epoch_cnt=10, steps_cnt=50,
+    #                                            optimizer_lr=0.05, scheduler_gamma=0.9, best_seed_amount=50,
+    #                                            normalize=True)
+    #encoder.save_tensor(latent3, "maxi_smile.jpg")
+
+    #tensor1 = encoder.load_tensor("johannes_nah.jpg")
+    #tensor2 = encoder.load_tensor("maxi_smile.jpg")
 
     # morph both pictures with linearcombination and show the result with a slider
-    # linearcombination = a1_linearcombination.Linearcombination(network_counter=2, generate_latents=False,
-    #                                                           latent1=tensor1, latent2=tensor2, slider_size=10,
-    #                                                           use_ws=True)
-    # linearcombination.create_slider()
+    #linearcombination = a1_linearcombination.Linearcombination(network_counter=2, generate_latents=False,
+    #                                                           latent1=tensor1, latent2=tensor2, slider_size=9,
+    #                                                           use_ws=True, normalized=True)
+    #linearcombination.create_slider()

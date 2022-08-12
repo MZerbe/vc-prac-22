@@ -24,7 +24,8 @@ Accordingly, one tries to keep the latent factors as less complex as possible, b
 feasible (keyword: unavoidable entanglement).
 
 
-## How does StyleGAN work?
+## How does StyleGAN work?  
+
 ![stylegan1_difference](./assets/stylegan/stylegan1.png)
 
 ### Mapping
@@ -53,13 +54,13 @@ to generate a pair of style values based on W and to add this style to the featu
 major attribute to the data.
 
 Since the learning is based on a constant input and the change of the respective convolution layer is based on a latent, 
-it is possible to control the strength of the style.
+it is possible to control the strength of the style.  
 ![stylegan1_detailed](./assets/stylegan/stylegan1_detailed.png)
 
 
 ## Differences in the versions
 ### StyleGAN2
-StyleGAN2 fixes the problem with "waterdroplets".
+StyleGAN2 fixes the problem with "waterdroplets".  
 ![stylegan2_waterdroplet](./assets/stylegan/stylegan2_waterdroplets.gif)
 
 The hypothesis for why StyleGAN1 has those water droplets is, "that it creates a strong, localized spike that dominates
@@ -78,7 +79,7 @@ The goal of StyleGAN2-ADA is to add functionality to train the GAN with limited 
 Adaptive Discriminator Augmentation.
 
 ### StyleGAN3
-The goal of StyleGAN3 is to fix texture sticking and make transition animations more natural.
+The goal of StyleGAN3 is to fix texture sticking and make transition animations more natural.  
 ![stylegan3_texture_sticking](./assets/stylegan/stylegan3_texture_sticking.gif)
 
 This is done by removing unintended position references.
@@ -87,14 +88,14 @@ Per-Pixel Noise Inputs, Positional Encodings, and Aliasing, where Aliasing was t
 
 Aliasing occurs when the tested signal frequency is too low. Specifically, they occur with upsampling filters and
 Nonlinearities (ReLu). To address this behavior, network layers need to work with continuous feature maps instead of
-discrete feature maps and the noise must be removed.
+discrete feature maps and the noise must be removed.  
 ![stylegan3_aliasing](./assets/stylegan/stylegan3_aliasing.gif)
 
 To go from discrete feature maps to continuous feature maps, you need to apply a low-pass filter.
-To get from a continuous feature map to a discrete feature map, you just need to pickpocket points.
+To get from a continuous feature map to a discrete feature map, you just need to pickpocket points.  
 ![stylegan3_lowpassfilter](./assets/stylegan/stylegan3_lowpassfilter.gif)
 
-The new architecture looks like this:
+The new architecture looks like this:  
 ![stylegan3_architecture](./assets/stylegan/stylegan3_new_architecture.png)
 
 
@@ -105,11 +106,11 @@ A solution for this can be the so-called truncation trick.
 With the Truncation Trick so-called low-probability regions (in z or also w) are ignored. This improves the
 quality of the image at the expense of the variation.
 The trick should only be applied to low-resolution layers (coarse features).
-The formula looks like this:
+The formula looks like this:  
 ![stylegan_truncation_trick](./assets/stylegan/stylegan_truncation_trick.jpeg)
 
 Psi is a value from -1 to 1, where 0 indicates the average image.
-If this value is now changed, you will see large attributes change.
+If this value is now changed, you will see large attributes change.  
 ![stylegan_truncation_trick_example](./assets/stylegan/stylegan_truncation_trick_example.png)
 
 ### Style Mixing
@@ -118,7 +119,7 @@ the result of different mapping networks to different style blocks.
 Thus, it is possible to exchange different latent vectors with variable selectable style blocks and to mix images on
 different layers with each other.
 A certain part of the network is also trained with the mixing of several randomly generated codes.
-Ex: Pose, Hairstyle, Face shape from code A and Eyeglasses, colors, finer facial features from code B.
+Ex: Pose, Hairstyle, Face shape from code A and Eyeglasses, colors, finer facial features from code B.  
 ![stylegan1_mixing](./assets/stylegan/stylegan1_style_mixing.gif)
 ![style_mixing_example](./assets/stylegan/style_mixing_example.png)
 
